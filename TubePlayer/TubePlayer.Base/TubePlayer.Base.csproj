@@ -7,6 +7,8 @@
 
   <ItemGroup>
     <None Include="**\*" Exclude="obj\**;bin\**;*.csproj" />
+    <PackageReference Include="Uno.Extensions.Http.Refit" />
+    <PackageReference Include="Uno.Extensions.Http.WinUI" />
     <None Update="AppHead.xaml.cs" DependentUpon="AppHead.xaml" />
   </ItemGroup>
 </Project>

@@ -27,3 +27,5 @@ global using Color = Windows.UI.Color;
 global using TubePlayer.Business;
 global using TubePlayer.Services.Models;
 global using Microsoft.UI.Text;
+global using Refit;
+global using TubePlayer.Services;

@@ -56,6 +56,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Windows.Compatibility" />
+    <PackageReference Include="Uno.Extensions.Http.Refit" />
+    <PackageReference Include="Uno.Extensions.Http.WinUI" />
     <PackageReference Include="Uno.Wasm.Bootstrap" />
     <PackageReference Include="Uno.Wasm.Bootstrap.DevServer" />
     <PackageReference Include="Uno.WinUI.WebAssembly" />

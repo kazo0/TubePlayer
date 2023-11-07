@@ -11,6 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Uno.Extensions.Http.Refit" />
+    <PackageReference Include="Uno.Extensions.Http.WinUI" />
     <PackageReference Include="Uno.WinUI.Skia.Gtk" />
     <PackageReference Include="Uno.WinUI.Markup" />
     <PackageReference Include="Uno.Material.WinUI.Markup" />
