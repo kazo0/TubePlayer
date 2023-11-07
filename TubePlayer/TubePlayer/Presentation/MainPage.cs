@@ -44,7 +44,7 @@ public partial class MainPage : Page
 									.Children
 									(
 										new Image()
-											.Source(new BitmapImage(new Uri("https://picsum.photos/384/40")))
+											.Source(new BitmapImage(new Uri("ms-appx:///TubePlayer/Assets/navigation_bar.png")))
 											.Stretch(Stretch.UniformToFill)
 											.AutoLayout(primaryAlignment: AutoLayoutPrimaryAlignment.Stretch)
 									)
