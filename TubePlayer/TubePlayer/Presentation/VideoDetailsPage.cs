@@ -15,7 +15,6 @@ namespace TubePlayer.Presentation
 							.Icon(new BitmapIcon().UriSource(new Uri("ms-appx:///TubePlayer/Assets/Icons/back.png")))
 						),
 					new TextBlock()
-						.Text(() => vm.Entity.Name)
 						.HorizontalAlignment(HorizontalAlignment.Center)
 						.VerticalAlignment(VerticalAlignment.Center))));
 		}

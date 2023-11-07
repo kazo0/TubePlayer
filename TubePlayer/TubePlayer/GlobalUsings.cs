@@ -24,3 +24,6 @@ global using Windows.Networking.Connectivity;
 global using Windows.Storage;
 global using ApplicationExecutionState = Windows.ApplicationModel.Activation.ApplicationExecutionState;
 global using Color = Windows.UI.Color;
+global using TubePlayer.Business;
+global using TubePlayer.Services.Models;
+global using Microsoft.UI.Text;

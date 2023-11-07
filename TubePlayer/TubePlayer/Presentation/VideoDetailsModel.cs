@@ -1,6 +1,8 @@
-namespace TubePlayer.Presentation
+using Windows.Media.Core;
+
+namespace TubePlayer.Presentation;
+
+public partial record VideoDetailsModel(YoutubeVideo Video)
 {
-	public partial record VideoDetailsModel(Entity Entity)
-	{
-	}
+	public IFeed<MediaSource> VideoSource => Feed.Async((ct) => new ValueTask<MediaSource>());
 }

@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace TubePlayer
 {
 	public class App : Application
@@ -20,10 +22,13 @@ namespace TubePlayer
 							.EmbeddedSource<App>()
 							.Section<AppConfig>()
 					)
+					.UseSerialization(services =>
+					{
+						services.AddSingleton(new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+					})
 					.ConfigureServices((context, services) =>
 					{
-						// TODO: Register your services
-						//services.AddSingleton<IMyService, MyService>();
+						services.AddSingleton<IYoutubeService, YoutubeServiceMock>();
 					})
 					.UseNavigation(ReactiveViewModelMappings.ViewModelMappings, RegisterRoutes)
 				);
