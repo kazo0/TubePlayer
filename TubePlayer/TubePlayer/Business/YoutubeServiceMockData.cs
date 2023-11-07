@@ -2,7 +2,7 @@ namespace TubePlayer.Business;
 
 public class YoutubeServiceMockData
 {
-    public const string ChannelData =
+	public const string ChannelData =
 """
 {
   "items": [
@@ -202,7 +202,7 @@ public class YoutubeServiceMockData
 }
 """;
 
-    public const string DetailsData =
+	public const string DetailsData =
 """
 {
   "items": [
