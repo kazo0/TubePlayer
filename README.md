@@ -1,3 +1,3 @@
-# template
+# TubePlayer Workshop
 
-template for brand new github repositories
+[Uno Platform TubePlayer workshop](https://aka.platform.uno/tubeplayer-workshop)
