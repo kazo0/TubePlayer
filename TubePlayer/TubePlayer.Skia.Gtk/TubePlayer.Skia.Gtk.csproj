@@ -13,6 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Uno.Extensions.Http.Refit" />
     <PackageReference Include="Uno.Extensions.Http.WinUI" />
+    <PackageReference Include="Uno.WinUI.MediaPlayer.Skia.Gtk" />
     <PackageReference Include="Uno.WinUI.Skia.Gtk" />
     <PackageReference Include="Uno.WinUI.Markup" />
     <PackageReference Include="Uno.Material.WinUI.Markup" />
@@ -32,6 +33,7 @@
     <PackageReference Include="SkiaSharp.Skottie" />
     <PackageReference Include="Uno.WinUI.DevServer" Condition="'$(Configuration)'=='Debug'" />
     <PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" />
+    <PackageReference Include="VideoLAN.LibVLC.Windows" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TubePlayer\TubePlayer.csproj" />

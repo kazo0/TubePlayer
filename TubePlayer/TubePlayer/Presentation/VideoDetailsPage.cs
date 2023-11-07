@@ -3,6 +3,7 @@ namespace TubePlayer.Presentation;
 
 public partial class VideoDetailsPage : Page
 {
+	private MediaPlayerElement? youtubePlayer;
 	public VideoDetailsPage()
 	{
 		this.DataContext<BindableVideoDetailsModel>((page, vm) => page
@@ -48,6 +49,10 @@ public partial class VideoDetailsPage : Page
 											)
 									),
 								new MediaPlayerElement()
+									.Assign(mediaPlayerElement => youtubePlayer = mediaPlayerElement)
+									.AutoPlay(true)
+									.Source(() => vm.VideoSource)
+									.PosterSource(() => vm.Video.Details.Snippet?.Thumbnails?.Medium?.Url!)
 									.AreTransportControlsEnabled(true)
 									.Width(400)
 									.Height(300)
@@ -145,5 +150,13 @@ public partial class VideoDetailsPage : Page
 			)
 		);
 	}
+	protected async override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+	{
+		base.OnNavigatingFrom(e);
+
+		youtubePlayer?.MediaPlayer.Pause();
+	}
+
+
 }
 #nullable enable
