@@ -40,7 +40,7 @@
     <PackageVersion Include="Uno.Themes.WinUI.Markup" Version="4.0.6" />
     <PackageVersion Include="Uno.WinUI.DevServer" Version="5.0.19" />
     <PackageVersion Include="Uno.WinUI.MediaPlayer.Skia.Gtk" Version="5.0.31" />
-    <PackageVersion Include="Uno.WinUI.MediaPlayer.WebAssembly" Version="5.0.31" />
+    <PackageVersion Include="Uno.WinUI.MediaPlayer.WebAssembly" Version="5.0.41" />
     <PackageVersion Include="Uno.WinUI.Skia.Gtk" Version="5.0.19" />
     <PackageVersion Include="Uno.WinUI.WebAssembly" Version="5.0.19" />
     <PackageVersion Include="VideoLAN.LibVLC.Windows" Version="3.0.20" />
