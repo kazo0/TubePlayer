@@ -42,7 +42,7 @@
     <PackageVersion Include="Uno.WinUI.MediaPlayer.Skia.Gtk" Version="5.0.31" />
     <PackageVersion Include="Uno.WinUI.MediaPlayer.WebAssembly" Version="5.0.31" />
     <PackageVersion Include="Uno.WinUI.Skia.Gtk" Version="5.0.19" />
-    <PackageVersion Include="Uno.WinUI.WebAssembly" Version="5.0.19" />
+    <PackageVersion Include="Uno.WinUI.WebAssembly" Version="5.0.48" />
     <PackageVersion Include="VideoLAN.LibVLC.Windows" Version="3.0.20" />
     <PackageVersion Include="Xamarin.Google.Android.Material" Version="1.10.0.1" />
   </ItemGroup>
