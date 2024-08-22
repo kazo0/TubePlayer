@@ -10,3 +10,5 @@ global using System.Text.Json;
 global using TubePlayer.Business;
 global using TubePlayer.Services.Models;
 global using TubePlayer.Business.Models;
+global using Refit;
+global using TubePlayer.Services;

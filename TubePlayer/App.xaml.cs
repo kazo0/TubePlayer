@@ -30,9 +30,25 @@ public partial class App : Application
 						.EmbeddedSource<App>()
 						.Section<AppConfig>()
 				)
+				.UseHttp(configure: (context, services) =>
+				{
+					services.AddRefitClientWithEndpoint<IYoutubeEndpoint, YoutubeEndpointOptions>(
+						context,
+						configure: (clientBuilder, options) => clientBuilder
+							.ConfigureHttpClient(httpClient =>
+							{
+								httpClient.BaseAddress = new Uri(options!.Url!);
+								httpClient.DefaultRequestHeaders.Add("x-goog-api-key", options.ApiKey);
+							}));
+				})
 				.ConfigureServices((context, services) =>
 				{
+					// Register your services
+ #if USE_MOCKS
 					services.AddSingleton<IYoutubeService, YoutubeServiceMock>();
+ #else
+					services.AddSingleton<IYoutubeService, YoutubeService>();
+ #endif
 				})
 				.UseSerialization(services =>
 				{
