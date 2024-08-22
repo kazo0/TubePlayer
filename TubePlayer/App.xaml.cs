@@ -55,7 +55,7 @@ public partial class App : Application
 		views.Register(
 			new ViewMap(ViewModel: typeof(ShellModel)),
 			new ViewMap<MainPage, MainModel>(),
-			new DataViewMap<VideoDetailsPage, VideoDetailsModel, Entity>()
+			new DataViewMap<VideoDetailsPage, VideoDetailsModel, YoutubeVideo>()
 		);
 
 		routes.Register(
