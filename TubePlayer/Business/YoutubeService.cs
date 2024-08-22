@@ -1,6 +1,6 @@
 namespace TubePlayer.Business;
 
-public class YoutubeService(IYoutubeEndpoint client) : IYoutubeService
+public class YoutubeService(IYoutubeEndpoint client, IYoutubePlayerEndpoint playerClient) : IYoutubeService
 {
 	public async Task<YoutubeVideoSet> SearchVideos(string searchQuery, string nextPageToken, uint maxResult, CancellationToken ct)
 	{
@@ -60,4 +60,38 @@ public class YoutubeService(IYoutubeEndpoint client) : IYoutubeService
 
 		return new(videoSet.ToImmutableList(), resultData?.NextPageToken ?? string.Empty);
 	}
+	public async Task<string?> GetVideoSourceUrl(string videoId, CancellationToken ct)
+	{
+		var streamVideo = $$"""
+            {
+                "videoId": "{{videoId}}",
+                "context": {
+                    "client": {
+                        "clientName": "ANDROID_TESTSUITE",
+                        "clientVersion": "1.9",
+                        "androidSdkVersion": 30,
+                        "hl": "en",
+                        "gl": "US",
+                        "utcOffsetMinutes": 0
+                    }
+                }
+            }
+            """;
+
+		// Get the available stream data
+		var streamData = await playerClient.GetStreamData(streamVideo, ct);
+
+		// Get the video stream with the highest video quality
+		var streamWithHighestVideoQuality = streamData.Content?.
+														StreamingData?
+														.Formats?
+														.OrderByDescending(s => s.QualityLabel)
+														.FirstOrDefault();
+
+		// Get the stream URL
+		var streamUrl = streamWithHighestVideoQuality?.Url;
+
+		return streamUrl;
+	}
+
 }
