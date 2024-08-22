@@ -1,26 +1,19 @@
+using Uno.Extensions.Reactive.Sources;
+
 namespace TubePlayer.Presentation;
 
-public partial record MainModel
+public partial record MainModel(IYoutubeService YoutubeService)
 {
-    private INavigator _navigator;
+	public IState<string> SearchTerm => State<string>.Value(this, () => "Uno Platform");
 
-    public MainModel(
-        IOptions<AppConfig> appInfo,
-        INavigator navigator)
-    {
-        _navigator = navigator;
-        Title = "Main";
-        Title += $" - {appInfo?.Value?.Environment}";
-    }
+	public IListFeed<YoutubeVideo> VideoSearchResults => SearchTerm
+		.Where(searchTerm => searchTerm is { Length: > 0 })
+		.SelectPaginatedByCursorAsync(
+			firstPage: string.Empty,
+			getPage: async (searchTerm, nextPageToken, desiredPageSize, ct) =>
+			{
+				var videoSet = await YoutubeService.SearchVideos(searchTerm, nextPageToken, desiredPageSize ?? 10, ct);
 
-    public string? Title { get; }
-
-    public IState<string> Name => State<string>.Value(this, () => string.Empty);
-
-    public async Task GoToSecond()
-    {
-        var name = await Name;
-        await _navigator.NavigateViewModelAsync<SecondModel>(this, data: new Entity(name!));
-    }
-
+				return new PageResult<string, YoutubeVideo>(videoSet.Videos, videoSet.NextPageToken);
+			});
 }

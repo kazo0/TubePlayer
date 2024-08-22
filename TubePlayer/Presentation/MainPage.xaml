@@ -1,30 +1,205 @@
-﻿<Page x:Class="TubePlayer.Presentation.MainPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:TubePlayer.Presentation"
-      xmlns:uen="using:Uno.Extensions.Navigation.UI"
-      xmlns:utu="using:Uno.Toolkit.UI"
-      xmlns:um="using:Uno.Material"
-      NavigationCacheMode="Required"
-      Background="{ThemeResource BackgroundBrush}">
-  <ScrollViewer>
-    <Grid utu:SafeArea.Insets="VisibleBounds">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition />
-      </Grid.RowDefinitions>
-      <utu:NavigationBar Content="{Binding Title}" />
+﻿<Page xmlns:uen="using:Uno.Extensions.Navigation.UI"
+	  xmlns:uer="using:Uno.Extensions.Reactive.UI"
+	  xmlns:utu="using:Uno.Toolkit.UI"
+	  xmlns:utum="using:Uno.Toolkit.UI.Material"
+	  xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+	  xmlns:um="using:Uno.Material"
+	  xmlns:ut="using:Uno.Themes"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:local="using:TubePlayer"
+	  x:Class="TubePlayer.Presentation.MainPage"
+	  mc:Ignorable="d"
+	  Background="{ThemeResource BackgroundBrush}"
+	  NavigationCacheMode="Required"
+	  utu:StatusBar.Foreground="Auto"
+	  utu:StatusBar.Background="{ThemeResource SurfaceBrush}"
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<Page.Resources>
+		<x:String x:Key="Icon_Chevron_Right">F1 M 1.4099998474121094 0 L 0 1.4099998474121094 L 4.579999923706055 6 L 0 10.59000015258789 L 1.4099998474121094 12 L 7.409999847412109 6 L 1.4099998474121094 0 Z</x:String>
+		<x:String x:Key="Icon_Refresh">F1 M 10.229999948994218 1.7624999284744263 C 9.142499869991036 0.6749998927116394 7.650000161122648 0 5.992500066608094 0 C 2.677499877578985 0 0 2.684999942779541 0 6 C 0 9.315000057220459 2.677499877578985 12 5.992500066608094 12 C 8.790000192145394 12 11.122499937989536 10.087500035762787 11.789999953801354 7.5 L 10.229999948994218 7.5 C 9.614999929905448 9.247499942779541 7.9500000657626675 10.5 5.992500066608094 10.5 C 3.510000010816059 10.5 1.4924998876823286 8.482499957084656 1.4924998876823286 6 C 1.4924998876823286 3.5175000429153442 3.510000010816059 1.5 5.992500066608094 1.5 C 7.237500091076937 1.5 8.34749961307525 2.0175001323223114 9.157499677468397 2.835000157356262 L 6.742500096429055 5.25 L 11.992500305175781 5.25 L 11.992500305175781 0 L 10.229999948994218 1.7624999284744263 Z</x:String>
+		<x:String x:Key="Icon_Search">F1 M 12.5 11 L 11.710000038146973 11 L 11.430000305175781 10.729999542236328 C 12.410000324249268 9.589999556541443 13 8.110000014305115 13 6.5 C 13 2.9100000858306885 10.089999914169312 0 6.5 0 C 2.9100000858306885 0 0 2.9100000858306885 0 6.5 C 0 10.089999914169312 2.9100000858306885 13 6.5 13 C 8.110000014305115 13 9.589999556541443 12.410000324249268 10.729999542236328 11.430000305175781 L 11 11.710000038146973 L 11 12.5 L 16 17.489999771118164 L 17.489999771118164 16 L 12.5 11 L 12.5 11 Z M 6.5 11 C 4.009999990463257 11 2 8.990000009536743 2 6.5 C 2 4.009999990463257 4.009999990463257 2 6.5 2 C 8.990000009536743 2 11 4.009999990463257 11 6.5 C 11 8.990000009536743 8.990000009536743 11 6.5 11 Z</x:String>
+		<x:String x:Key="Icon_Error">F1 M 78.19999694824219 1.8000001907348633 C 77.19999694824219 0.6000001430511475 75.60000002384186 0 74 0 L 6 0 C 4.399999976158142 0 2.8000001907348633 0.6000001430511475 1.8000001907348633 1.8000001907348633 C 0.6000001430511475 2.8000001907348633 0 4.399999976158142 0 6 L 0 58 C 0 59.60000002384186 0.6000001430511475 61.19999694824219 1.8000001907348633 62.19999694824219 C 2.8000001907348633 63.3999969959259 4.399999976158142 64 6 64 L 74 64 C 77.20000004768372 64 80 61.200000047683716 80 58 L 80 6 C 80 4.399999976158142 79.3999969959259 2.8000001907348633 78.19999694824219 1.8000001907348633 Z M 74 58 L 6 58 L 6 6 L 74 6 L 74 58 Z M 30.799999237060547 45.400001525878906 L 40 36.20000076293945 L 49.20000076293945 45.400001525878906 L 53.400001525878906 41.20000076293945 L 44.20000076293945 32 L 53.400001525878906 22.799999237060547 L 49.20000076293945 18.600000381469727 L 40 27.799999237060547 L 30.799999237060547 18.600000381469727 L 26.600000381469727 22.799999237060547 L 35.79999923706055 32 L 26.600000381469727 41.20000076293945 L 30.799999237060547 45.400001525878906 Z</x:String>
+		<x:String x:Key="Icon_Empty">F1 M 36.57652282714844 15.768688201904297 L 28.12342071533203 24.199007034301758 L 19.670324325561523 15.768688201904297 L 15.811301231384277 19.6173095703125 L 24.264400482177734 28.047626495361328 L 15.811301231384277 36.47794723510742 L 19.670324325561523 40.326568603515625 L 28.12342071533203 31.896251678466797 L 36.57652282714844 40.326568603515625 L 40.435546875 36.47794723510742 L 31.982446670532227 28.047626495361328 L 40.435546875 19.6173095703125 L 36.57652282714844 15.768688201904297 Z M 49.807456970214844 45.64133071899414 C 54.034006118774414 40.693100929260254 56.239158630371094 34.46199989318848 56.239158630371094 27.864360809326172 C 56.239158630371094 20.533650398254395 53.29895353317261 13.38620662689209 47.969825744628906 8.254709243774414 C 42.824461460113525 2.939943790435791 35.65770435333252 -0.17560786567628384 28.12342071533203 0.0076598916202783585 C 20.589137077331543 0.0076598916202783585 13.422379970550537 2.939943790435791 8.277015686035156 8.254709243774414 C 2.947887897491455 13.38620662689209 -0.17608242109417915 20.53364849090576 0.007680591195821762 28.047626495361328 C 0.007680591195821762 35.561604499816895 2.947887897491455 42.7090482711792 8.277015686035156 47.840545654296875 C 13.422379970550537 53.1553111076355 20.589137077331543 56.27085702121258 28.12342071533203 56.087589263916016 C 34.55512619018555 56.087589263916016 40.986831188201904 53.88838005065918 45.94843292236328 49.673221588134766 L 64.32473754882812 68 L 68 63.96811294555664 L 49.807456970214844 45.64133071899414 Z M 44.110801696777344 43.991920471191406 C 39.88425254821777 48.39034700393677 34.18760013580322 50.772829219698906 28.12342071533203 50.589561462402344 C 22.05924129486084 50.772829219698906 16.36258888244629 48.20707893371582 12.136039733886719 43.991920471191406 C 7.725727081298828 39.77676200866699 5.33680821955204 34.09546232223511 5.520571231842041 28.047626495361328 C 5.33680821955204 21.99979066848755 7.909490585327148 16.318490982055664 12.136039733886719 12.10333251953125 C 16.36258888244629 7.704905986785889 22.05924129486084 5.322425201535225 28.12342071533203 5.505692958831787 C 34.18760013580322 5.505692958831787 39.88425254821777 7.888174057006836 44.110801696777344 12.10333251953125 C 48.521114349365234 16.318490982055664 50.91003559529781 21.99979066848755 50.72627258300781 28.047626495361328 C 50.72627258300781 34.09546232223511 48.337350845336914 39.77676200866699 44.110801696777344 43.991920471191406 Z</x:String>
 
-      <StackPanel Grid.Row="1"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Spacing="16">
-        <TextBox Text="{Binding Name, Mode=TwoWay}"
-            PlaceholderText="Enter your name:" />
-        <Button Content="Go to Second Page"
-            AutomationProperties.AutomationId="SecondPageButton"
-            Command="{Binding GoToSecond}" />
-      </StackPanel>
-    </Grid>
-  </ScrollViewer>
+		<DataTemplate x:Key="VideoItemTemplate">
+			<utu:CardContentControl Margin="0,0,0,8"
+									HorizontalAlignment="Stretch"
+									Style="{StaticResource ElevatedCardContentControlStyle}">
+				<utu:AutoLayout Background="{ThemeResource SurfaceBrush}"
+								CornerRadius="12"
+								PrimaryAxisAlignment="Center"
+								CounterAxisAlignment="Center"
+								HorizontalAlignment="Stretch">
+					<utu:AutoLayout Background="{ThemeResource SurfaceBrush}"
+									CornerRadius="12"
+									Padding="8,8,8,0"
+									MaxHeight="288"
+									MaxWidth="456">
+						<Border Height="204.75"
+								CornerRadius="6">
+							<Image Source="{Binding Details.Snippet.Thumbnails.Medium.Url}"
+								   Stretch="UniformToFill" />
+						</Border>
+						<utu:AutoLayout Spacing="8"
+										CounterAxisAlignment="Center"
+										Orientation="Horizontal"
+										Padding="0,8">
+							<Border Width="60"
+									Height="60"
+									CornerRadius="6">
+								<Image Source="{Binding Channel.Snippet.Thumbnails.Medium.Url}"
+									   Stretch="UniformToFill" />
+							</Border>
+							<utu:AutoLayout PrimaryAxisAlignment="Center"
+											utu:AutoLayout.CounterAlignment="Stretch"
+											utu:AutoLayout.PrimaryAlignment="Stretch">
+								<TextBlock Text="{Binding Channel.Snippet.Title}"
+										   utu:AutoLayout.CounterAlignment="Stretch"
+										   Height="22"
+										   Foreground="{ThemeResource OnSurfaceBrush}"
+										   Style="{StaticResource TitleMedium}" />
+								<TextBlock Text="{Binding Details.Snippet.Title}"
+										   utu:AutoLayout.CounterAlignment="Stretch"
+										   Height="16"
+										   Foreground="{ThemeResource OnSurfaceMediumBrush}" />
+							</utu:AutoLayout>
+							<Button utu:AutoLayout.CounterAlignment="Start"
+									Foreground="{ThemeResource OnSurfaceVariantBrush}"
+									Style="{StaticResource IconButtonStyle}">
+								<PathIcon Data="{StaticResource Icon_Chevron_Right}"
+										  Foreground="{ThemeResource OnSurfaceVariantBrush}" />
+							</Button>
+						</utu:AutoLayout>
+					</utu:AutoLayout>
+				</utu:AutoLayout>
+			</utu:CardContentControl>
+		</DataTemplate>
+
+		<DataTemplate x:Key="NoneTemplate">
+			<utu:AutoLayout PrimaryAxisAlignment="Center"
+							CounterAxisAlignment="Center"
+							utu:AutoLayout.PrimaryAlignment="Stretch">
+				<utu:AutoLayout Spacing="24"
+								PrimaryAxisAlignment="Center"
+								CounterAxisAlignment="Center"
+								Padding="0,0,0,122"
+								utu:AutoLayout.PrimaryAlignment="Stretch">
+					<utu:AutoLayout PrimaryAxisAlignment="Center"
+									CounterAxisAlignment="Center"
+									Width="160"
+									Height="160">
+						<Ellipse Fill="{ThemeResource SurfaceBrush}"
+								 Width="160"
+								 Height="160" />
+						<Path Data="{StaticResource Icon_Empty}"
+							  Fill="{ThemeResource SecondaryBrush}"
+							  utu:AutoLayout.IsIndependentLayout="True"
+							  Margin="46,46,0,0"
+							  VerticalAlignment="Top"
+							  HorizontalAlignment="Left"
+							  Width="68"
+							  Height="68" />
+					</utu:AutoLayout>
+					<utu:AutoLayout PrimaryAxisAlignment="Center"
+									CounterAxisAlignment="Center">
+						<TextBlock Text="No results found"
+								   Foreground="{ThemeResource OnSurfaceBrush}"
+								   Style="{StaticResource HeadlineSmall}" />
+						<TextBlock Text="Try a new search"
+								   Foreground="{ThemeResource OnSurfaceMediumBrush}"
+								   Style="{StaticResource BodyLarge}" />
+					</utu:AutoLayout>
+				</utu:AutoLayout>
+			</utu:AutoLayout>
+		</DataTemplate>
+
+		<DataTemplate x:Key="ErrorTemplate">
+			<utu:AutoLayout Spacing="8"
+							PrimaryAxisAlignment="Center"
+							CounterAxisAlignment="Center"
+							utu:AutoLayout.PrimaryAlignment="Stretch">
+				<utu:AutoLayout Spacing="24"
+								PrimaryAxisAlignment="Center"
+								CounterAxisAlignment="Center"
+								Padding="0,0,0,36"
+								utu:AutoLayout.PrimaryAlignment="Stretch">
+					<utu:AutoLayout PrimaryAxisAlignment="Center"
+									CounterAxisAlignment="Center"
+									Width="160"
+									Height="160">
+						<Ellipse Fill="{ThemeResource SurfaceBrush}"
+								 Width="160"
+								 Height="160" />
+						<Path Data="{StaticResource Icon_Error}"
+							  Fill="{ThemeResource SecondaryBrush}"
+							  utu:AutoLayout.IsIndependentLayout="True"
+							  Margin="40,48"
+							  VerticalAlignment="Center"
+							  HorizontalAlignment="Center"
+							  Width="80"
+							  Height="64" />
+					</utu:AutoLayout>
+					<utu:AutoLayout PrimaryAxisAlignment="Center"
+									CounterAxisAlignment="Center">
+						<TextBlock Text="Oh no!"
+								   Foreground="{ThemeResource OnSurfaceBrush}"
+								   Style="{StaticResource HeadlineSmall}" />
+						<TextBlock Text="Something went wrong"
+								   Foreground="{ThemeResource OnSurfaceMediumBrush}"
+								   Style="{StaticResource BodyLarge}" />
+					</utu:AutoLayout>
+				</utu:AutoLayout>
+				<Button Content="Retry"
+						Margin="16,24"
+						utu:AutoLayout.CounterAlignment="Stretch"
+						Style="{StaticResource FilledTonalButtonStyle}">
+					<ut:ControlExtensions.Icon>
+						<PathIcon Data="{StaticResource Icon_Refresh}" />
+					</ut:ControlExtensions.Icon>
+				</Button>
+			</utu:AutoLayout>
+		</DataTemplate>
+	</Page.Resources>
+	<utu:AutoLayout CounterAxisAlignment="Center">
+		<utu:AutoLayout PrimaryAxisAlignment="Center"
+						utu:AutoLayout.PrimaryAlignment="Stretch"
+						Width="400">
+			<utu:NavigationBar utu:AutoLayout.CounterAlignment="Center"
+							   Content="TubePlayer"
+							   Width="400" />
+			<utu:AutoLayout Background="{ThemeResource SurfaceBrush}"
+							CounterAxisAlignment="Start"
+							Padding="12">
+				<TextBox Background="{ThemeResource SurfaceVariantBrush}"
+						 Text="{Binding SearchTerm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+						 utu:AutoLayout.CounterAlignment="Stretch"
+						 PlaceholderText="Search"
+						 CornerRadius="20"
+						 BorderThickness="0">
+					<ut:ControlExtensions.Icon>
+						<PathIcon Data="{StaticResource Icon_Search}"
+								  Foreground="{ThemeResource OnSurfaceVariantBrush}" />
+					</ut:ControlExtensions.Icon>
+				</TextBox>
+			</utu:AutoLayout>
+
+			<uer:FeedView utu:AutoLayout.PrimaryAlignment="Stretch"
+						  NoneTemplate="{StaticResource NoneTemplate}"
+						  ErrorTemplate="{StaticResource ErrorTemplate}"
+						  Source="{Binding VideoSearchResults}">
+				<uer:FeedView.ValueTemplate>
+					<DataTemplate>
+						<ListView Background="{ThemeResource BackgroundBrush}"
+								  ItemsSource="{Binding Data}"
+								  ItemTemplate="{StaticResource VideoItemTemplate}"
+								  uen:Navigation.Request="VideoDetails"
+								  Padding="12,8"
+								  utu:AutoLayout.PrimaryAlignment="Stretch" />
+					</DataTemplate>
+				</uer:FeedView.ValueTemplate>
+			</uer:FeedView>
+		</utu:AutoLayout>
+	</utu:AutoLayout>
 </Page>
