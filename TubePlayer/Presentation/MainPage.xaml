@@ -12,18 +12,19 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
-		<TextBox PlaceholderText="Search term" />
-		<ListView Grid.Row="1">
+		<TextBox PlaceholderText="Search term"
+				 Text="{Binding SearchTerm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+		<ListView Grid.Row="1"
+				  ItemsSource="{Binding VideoSearchResults}">
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					<TextBlock Text="{Binding}" />
+					<StackPanel>
+						<TextBlock FontWeight="Bold"
+								   Text="{Binding Details.Snippet.ChannelTitle}" />
+						<TextBlock Text="{Binding Details.Snippet.Title}" />
+					</StackPanel>
 				</DataTemplate>
 			</ListView.ItemTemplate>
-			<ListView.Items>
-				<x:String>Avatar</x:String>
-				<x:String>Titanic</x:String>
-				<x:String>Star Wars</x:String>
-			</ListView.Items>
 		</ListView>
 	</Grid>
 </Page>
