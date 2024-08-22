@@ -73,12 +73,8 @@
 										CounterAxisAlignment="Start"
 										utu:AutoLayout.PrimaryAlignment="Stretch"
 										Height="37">
-							<utu:AutoLayout CounterAxisAlignment="Start"
-											Orientation="Horizontal"
-											utu:AutoLayout.PrimaryAlignment="Stretch">
-								<TextBlock Text="{Binding Video.FormattedSubscriberCount}"
+							<TextBlock Text="{Binding Video.FormattedSubscriberCount}"
 										   Foreground="{ThemeResource OnSurfaceMediumBrush}" />
-							</utu:AutoLayout>
 							<TextBlock Text="{Binding Video.Channel.Snippet.Title}"
 									   Foreground="{ThemeResource OnSurfaceBrush}"
 									   Style="{StaticResource TitleMedium}" />
