@@ -30,4 +30,10 @@ public class YoutubeServiceMock : IYoutubeService
 
 		return Task.FromResult(result);
 	}
+
+	public Task<string?> GetVideoSourceUrl(string videoId, CancellationToken ct)
+	{
+		return Task.FromResult<string?>(default);
+	}
+
 }

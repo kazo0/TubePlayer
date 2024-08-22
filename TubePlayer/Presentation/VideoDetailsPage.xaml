@@ -37,6 +37,10 @@
 				</utu:NavigationBar.MainCommand>
 			</utu:NavigationBar>
 			<MediaPlayerElement AreTransportControlsEnabled="True"
+								x:Name="youtubePlayer"
+								AutoPlay="True"
+								Source="{Binding VideoSource}"
+								PosterSource="{Binding Video.Details.Snippet.Thumbnails.Medium.Url}"
 								Width="400"
 								Height="300">
 				<MediaPlayerElement.TransportControls>

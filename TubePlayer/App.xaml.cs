@@ -39,7 +39,8 @@ public partial class App : Application
 							{
 								httpClient.BaseAddress = new Uri(options!.Url!);
 								httpClient.DefaultRequestHeaders.Add("x-goog-api-key", options.ApiKey);
-							}));
+							}))
+					.AddRefitClient<IYoutubePlayerEndpoint>(context);
 				})
 				.ConfigureServices((context, services) =>
 				{
