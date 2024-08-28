@@ -4,6 +4,7 @@ https://aka.platform.uno/tubeplayer-workshop
 
 TubePlayer sample app built with XAML, broken down per-module
 
+- [Module 0 (blank app)](https://github.com/kazo0/TubePlayer/tree/module-00)
 - [Module 1](https://github.com/kazo0/TubePlayer/tree/module-01)
 - [Module 2](https://github.com/kazo0/TubePlayer/tree/module-02)
 - [Module 3](https://github.com/kazo0/TubePlayer/tree/module-03)
