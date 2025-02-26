@@ -45,11 +45,11 @@ public partial class App : Application
 				.ConfigureServices((context, services) =>
 				{
 					// Register your services
- #if USE_MOCKS
+#if USE_MOCKS
 					services.AddSingleton<IYoutubeService, YoutubeServiceMock>();
- #else
+#else
 					services.AddSingleton<IYoutubeService, YoutubeService>();
- #endif
+#endif
 				})
 				.UseSerialization(services =>
 				{
