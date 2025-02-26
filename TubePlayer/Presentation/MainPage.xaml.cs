@@ -1,4 +1,4 @@
-﻿namespace TubePlayer.Presentation;
+namespace TubePlayer.Presentation;
 
 public sealed partial class MainPage : Page
 {
